@@ -1,2 +1,2 @@
 # Multimeter+ Source Code
-Multimeter+ object library and documentation.
+Multimeter+ object library and code.
