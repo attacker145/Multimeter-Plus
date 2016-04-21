@@ -345,138 +345,9 @@ skip_main:
             __asm__ volatile("disi #0x3FFF"); /* disable interrupts */
             //cmdLCD((char) 0x80);
             clrLCD();
-            //ClrWdt();                   // To prevent a WDT Time-out Reset <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            cmdLCD((char) 0x80); //When _RA14 is pressed the prog will jump to the next while loop
-            putsLCD("tnmopnenC uenm  "); //Component menu
-            mydelay_sec(1);
-            cmdLCD((char) 0x80);
-            putsLCD("Cnmopnent uenm  "); //Component menu
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD((char) 0x80);
-            putsLCD("Comopnent uenm  "); //Component menu
-            mydelay_ms(50);
-            cmdLCD((char) 0x80);
-            putsLCD("Comopnent uenm  "); //Component menu
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD((char) 0x80);
-            putsLCD("Component uenm  "); //Component menu
-            mydelay_ms(50);
-
-            cmdLCD((char) 0x80);
-            putsLCD("Component menm  "); //Component menu
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            //if (selection != 2 ){
+            
             cmdLCD((char) 0x80);
             putsLCD("Component menu  "); //Component menu
-            mydelay_ms(50);
-            
-            cmdLCD(0xc0);
-            putsLCD("e               ");    //continue
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("ue              ");
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD(0xc0);
-            putsLCD("nue             ");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("inue            ");
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD(0xc0);
-            putsLCD("tinue           ");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("ntinue          ");
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD(0xc0);
-            putsLCD("ontinue         ");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue        ");
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD(0xc0);
-            putsLCD("continue       .");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue      . ");
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD(0xc0);
-            putsLCD("continue     .  ");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue    .   ");
-            mydelay_ms(50);
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD(0xc0);
-            putsLCD("continue   .    ");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue  .     ");
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            cmdLCD(0xc0);
-            putsLCD("continue.      .");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue.     . ");
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue.    .  ");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue.   .   ");
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue.  .    ");
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue. .     ");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue..      ");
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            putsLCD("continue..     .");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue..    . ");
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue..   .  ");
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue..  .   ");
-            if (!menu_pb || !menu_dwn || !menu_up)
-                goto skip;
-            mydelay_ms(50);
-            cmdLCD(0xc0);
-            putsLCD("continue.. .    ");
-            mydelay_ms(50);
             cmdLCD(0xc0);
             putsLCD("continue...     ");
             //mydelay_ms(100);
@@ -531,14 +402,6 @@ skip:
                  * range_test() does NOT have display
                  */
                  range_test();  //File: Range Test Rev04x.c
-                
-                // <editor-fold defaultstate="collapsed" desc="TstAndResetVoltDiv(), execute_function(): take voltage readings on both channels with previously selected dividers">
-                //rx_function = 13;           //Collect data without transmitting to PC. This function enavbles INT2 and OC2
-                //execute_function();         //Start cycle. Collect data samples
-                //while (!buffer_full) {}     //Wait until all data is collected                
-                //TstAndResetVoltDiv(cflag,rng_srch,c_smple_sum,current_sum_n,current_sum_p,cal,
-                //        CH1vsftSgn,CH1vshft,dividerCH1,vflag,v_smple_sum,voltage_sum_n,voltage_sum_p,
-                //        CH0vsftSgn,CH0vshft,dividerCH0,buffer_full);                               
                 // </editor-fold>
                                            
                 // </editor-fold>
