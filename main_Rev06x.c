@@ -52,21 +52,7 @@
  */// </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="PIC24FJ256GA110 Configuration settings">
-/*
- * #define FWDTEN_OFF           0x7F7F
- * #define FWDTEN_ON            0x7FFF
- * If the FWDTEN Configuration bit is set, the WDT is always enabled (FWDTEN_ON). However, the WDT can be
- * optionally controlled in the user software when the FWDTEN Configuration bit has been
- * programmed to '0', FWDTEN_OFF.
- * The WDT is enabled in software by setting the SWDTEN control bit (RCON<5>). The SWDTEN
- * control bit is cleared on any device Reset. The software WDT option allows the user to enable
- * the WDT for critical code segments and disable the WDT during non-critical segments for
- * maximum power savings. So no changes to the configuration register: FWDTEN_OFF & WINDIS_OFF do not change
- * FWPSA_PR128 = pre-scaler set to                  -> Pre-scaler ratio of 1:128
- * WDTPS_PS32768 = Watchdog Timer Post-scaler set to -> WDTPS_PS32768 - 1:32,768 
- * 31000 / (128 * 32768) = 0.007391 Hz = 135 sec (Has to be at least 5 sec)
- * LPRC INPUT --> Pre-scaler ratio --> WDT counter --> Post-scaler --> RESET 
- */
+
 //_CONFIG1(JTAGEN_OFF & GCP_OFF & GWRP_OFF & BKBUG_OFF & COE_OFF & ICS_PGx2 & FWDTEN_OFF & WINDIS_OFF & FWPSA_PR128 & WDTPS_PS32768)
 //31000 / (128 * 4096) = 0.05913 Hz => 1/0.05913 = 16.9125 sec
 _CONFIG1(JTAGEN_OFF & GCP_OFF & GWRP_OFF & BKBUG_OFF & COE_OFF & ICS_PGx2 & FWDTEN_OFF & WINDIS_OFF & FWPSA_PR128 & WDTPS_PS4096)  //WDt ~16 sec      
@@ -329,157 +315,15 @@ int main (void)
                 clrLCD();
                 //ClrWdt();               // To prevent a WDT Time-out Reset <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 // <editor-fold defaultstate="collapsed" desc="Running splash screen - Main Menue ready">            
-                cmdLCD((char) 0x80); //When _RA14 is pressed the prog will jump to the next while loop
-                putsLCD("niaM unem ydaer "); //Main Menu ready
-                mydelay_ms(50);
-                cmdLCD((char) 0x80);
-                putsLCD("niMa unem ydaer "); //Main Menu ready
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD((char) 0x80);
-                putsLCD("nMia unem ydaer "); //Main Menu ready
-                mydelay_ms(50);
-                cmdLCD((char) 0x80);
-                putsLCD("Mnia unem ydaer "); //Main Menu ready
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD((char) 0x80);
-                putsLCD("Mina unem ydaer "); //Main Menu ready
-                mydelay_ms(50);
-                cmdLCD((char) 0x80);
-                putsLCD("Main unem ydaer "); //Main Menu ready
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD((char) 0x80);
-                putsLCD("Main mneu ydaer "); //Main Menu ready
-                mydelay_ms(50);
-                cmdLCD((char) 0x80);
-                putsLCD("Main meNu ydaer "); //Main Menu ready
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD((char) 0x80);
-                putsLCD("Main menu ydaer "); //Main Menu ready
-                mydelay_ms(50);            
-                cmdLCD((char) 0x80);
-                putsLCD("Main menu radey "); //Main Menu ready
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD((char) 0x80);
-                putsLCD("Main menu reday "); //Main Menu ready
-                mydelay_ms(50);
                 cmdLCD((char) 0x80);
                 putsLCD("Main menu ready "); //Main Menu ready
                 mydelay_ms(50);
                 if (!menu_pb || !menu_dwn || !menu_up)
                     goto skip_main;
-            // </editor-fold>
-                //ClrWdt();                   // To prevent a WDT Time-out Reset <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                // </editor-fold>
                 // <editor-fold defaultstate="collapsed" desc="Splash screen - continue...">            
                 cmdLCD(0xc0);
-                putsLCD("e               ");    //continue
-                mydelay_ms(100);
-                cmdLCD(0xc0);
-                putsLCD("ue              ");
-                mydelay_ms(95);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("nue             ");
-                mydelay_ms(90);
-                cmdLCD(0xc0);
-                putsLCD("inue            ");
-                mydelay_ms(85);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("tinue           ");
-                mydelay_ms(80);
-                cmdLCD(0xc0);
-                putsLCD("ntinue          ");
-                mydelay_ms(70);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("ontinue         ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue        ");
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("continue       .");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue      . ");
-                mydelay_ms(50);
-                if (!menu_pb)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("continue     .  ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue    .   ");
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("continue   .    ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue  .     ");
-                cmdLCD(0xc0);
-                putsLCD("continue.      .");
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("continue.     . ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue.    .  ");
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("continue.   .   ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue.  .    ");
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("continue. .     ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue..      ");
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                putsLCD("continue..     .");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue..    . ");
-                mydelay_ms(50);
-                if (!menu_pb || !menu_dwn || !menu_up)
-                    goto skip_main;
-                cmdLCD(0xc0);
-                putsLCD("continue..   .  ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue..  .   ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
-                putsLCD("continue.. .    ");
-                mydelay_ms(50);
-                cmdLCD(0xc0);
                 putsLCD("continue...     ");
-                //mydelay_ms(100);
                 mydelay_sec(1);
                 // </editor-fold>
 skip_main:
